@@ -253,5 +253,77 @@ export default [
         }
       }
     ]
+  },
+  {
+    name: "Ясуо",
+    data: [
+      {
+        name: "Default",
+        runes: {
+        "Precision": [4, 2, 1, 1],
+        "Domination": [2, -1, 1, 2, 1, 2]
+        }
+      }
+    ]
+  },
+  {
+    name: "Скарнер",
+    data: [
+      {
+        name: "Default",
+        runes: {
+        "Sorcery": [3, 3, 2, 2],
+        "Inspiration": [2, -1, 1, 2, 1, 2]
+        }
+      }
+    ]
+  },
+  {
+    name: "Эвелинн",
+    data: [
+      {
+        name: "Default",
+        runes: {
+        "Domination": [1, 3, 3, 3],
+        "Sorcery": [-1, 3, 3, 1, 1, 2]
+        }
+      }
+    ]
+  },
+  {
+    name: "Киндред",
+    data: [
+      {
+        name: "Default",
+        runes: {
+        "Precision": [1, 2, 1, 1],
+        "Domination": [3, -1, 1, 2, 1, 2]
+        }
+      }
+    ]
+  },
+  {
+    name: "Гарен",
+    data: [
+      {
+        name: "Default",
+        runes: {
+        "Precision": [4, 2, 2, 3],
+        "Resolve": [1, -1, 1, 1, 1, 2]
+        }
+      }
+    ]
+  },
+  {
+    name: "Пантеон",
+    data: [
+      {
+        name: "Default",
+        runes: {
+        "Precision": [1, 2, 2, 1],
+        "Domination": [1, -1, 3, 1, 1, 2]
+        }
+      }
+    ]
   }
 ]

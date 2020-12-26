@@ -21,5 +21,11 @@ export default {
     Эзреаль: context('./Эзреаль.jpg'),
     Леона: context('./Леона.jpg'),
     Каин: context('./Каин.jpg'),
-    Пайк: context('./Пайк.jpg')
+    Пайк: context('./Пайк.jpg'),
+    Ясуо: context('./Ясуо.jpg'),
+    Скарнер: context('./Скарнер.jpg'),
+    Эвелинн: context('./Эвелинн.jpg'),
+    Киндред: context('./Киндред.jpg'),
+    Гарен: context('./Гарен.jpg'),
+    Пантеон: context('./Пантеон.jpg')
 }

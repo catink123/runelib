@@ -1,5 +1,5 @@
 <template>
-  <div class="RuneCard" v-on:click="showRune = !showRune">
+  <div :class="'RuneCard' + (showRune == true ? ' pressed' : '')" v-on:click="showRune = !showRune">
     <img class="image" :src="image" draggable="false" />
     <p class="name">{{ name }}</p>
     <div class="runeContainer" v-if="showRune">
@@ -27,11 +27,25 @@ export default {
 
 <style scoped>
 .RuneCard {
-  background: black;
+  background: rgb(25, 25, 25);
   color: white;
-  border-radius: 50px;
-  border: 1px solid white;
+  border-radius: 50px 20px 20px 50px;
+  border: 1px solid rgb(150, 150, 150);
   display: flex;
+  height: 75px !important;
+  transition-duration: .1s;
+}
+
+.RuneCard:active {
+  background: rgb(100, 100, 100)
+}
+
+.RuneCard.pressed {
+  background: white;
+}
+
+.RuneCard.pressed .name {
+  color: black;
 }
 
 .image {
@@ -60,8 +74,8 @@ export default {
 
 .minirune {
   pointer-events: none;
-  border-radius: 40px;
-  border: 1px solid white;
+  border-radius: 5px;
+  border: 1px solid rgb(150, 150, 150);
   animation: 0.2s ease-in-out forwards pulldown;
   overflow: hidden;
 }
@@ -69,10 +83,12 @@ export default {
 @keyframes pulldown {
   0% {
     height: 0px;
+    opacity: 0;
   }
 
   100% {
     height: 415px;
+    opacity: 1;
   }
 }
 </style>

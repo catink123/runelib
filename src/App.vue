@@ -22,24 +22,40 @@ export default {
   },
   data() {
     return {
-      runes: runes
+      runes: null
     }
+  },
+  created() {
+    this.$data.runes = runes.sort((a, b) => {
+      if (a.name > b.name) return 1;
+      if (a.name < b.name) return -1;
+      return 0;
+    })
   }
 }
 </script>
 
 <style>
 body {
-  background: rgb(50, 50, 50);
+  background: repeating-linear-gradient(45deg, #333 0px, #333 1px, transparent 1px, transparent 25px),
+              repeating-linear-gradient(-45deg, #333 0px, #333 1px, #131313 1px, #131313 25px);
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  display: flex;
 }
 
 div.flex {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  min-height: calc(100vh - 50px);
+  margin-top: 50px;
+  margin-left: 25px;
+  margin-right: 25px;
 }
 
-div.flex * {
+div.flex .RuneCard {
   margin-right: 10px;
   margin-bottom: 10px;
 }

@@ -287,23 +287,36 @@ export default {
 </script>
 
 <style scoped>
+@keyframes nameShow {
+  0% {
+    transform: translateX(-200%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
+}
+
 .main {
-  background: rgba(0, 0, 0, 1);
+  background: rgba(15, 15, 15, 0.85);
   display: flex;
   flex-direction: row;
   height: 415px;
+  backdrop-filter: blur(10px)
 }
 
 .runeName {
-  position: absolute;
-  /* width: 570px; */
+  position: relative;
   padding: 10px 0;
   text-align: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 30px 50%;
-  transform: translateX(-50%);
-  background: linear-gradient(transparent, black, black, transparent);
+  width: 100%;
   z-index: 1;
+  writing-mode: vertical-lr;
+  transform: translateX(-200%);
+  animation: .25s ease-in-out forwards nameShow;
+  animation-delay: 0.15s;
+  margin: 10px;
 }
 
 .Precision {
@@ -379,8 +392,8 @@ export default {
   margin-right: 0;
 }
 
-.main .rune:first-child {
-  border-right: 1px dashed rgba(255, 255, 255, 0.25);
+.main .runeIterator:first-child div {
+  margin-right: 50px;
 }
 
 .statModsIcons div img:first-child, .subIcons img:first-child {
