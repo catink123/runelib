@@ -2,7 +2,7 @@
   <div class="main">
     <p class="runeName">{{ name }}</p>
     <div class="runeIterator" v-for="i in dummyList" v-bind:key="i">
-      <div class="rune Precision" v-if="Object.keys(data)[i] == 'Precision'">
+      <div :class="'rune Precision' + (i == 1 ? ' SecondRune ' + Object.keys(data)[0] + 'FirstRune': '')" v-if="Object.keys(data)[i] == 'Precision'">
         <img draggable="false" class="runeIcon" :src="images.Precision.Precision" />
         <div v-if="i == 0" class="subIcons">
           <img draggable="false" :class="visible(i, 0, 0)" :src="images.Precision.PressTheAttack" />
@@ -43,7 +43,7 @@
           </div>
         </div>
       </div>
-      <div class="rune Domination" v-if="Object.keys(data)[i] == 'Domination'">
+      <div :class="'rune Domination' + (i == 1 ? ' SecondRune ' + Object.keys(data)[0] + 'FirstRune': '')" v-if="Object.keys(data)[i] == 'Domination'">
         <img draggable="false" class="runeIcon" :src="images.Domination.Domination" />
         <div v-if="i == 0" class="subIcons">
           <img draggable="false" :class="visible(i, 0, 0)" :src="images.Domination.Electrocute" />
@@ -85,7 +85,7 @@
           </div>
         </div>
       </div>
-      <div class="rune Sorcery" v-if="Object.keys(data)[i] == 'Sorcery'">
+      <div :class="'rune Sorcery' + (i == 1 ? ' SecondRune ' + Object.keys(data)[0] + 'FirstRune': '')" v-if="Object.keys(data)[i] == 'Sorcery'">
         <img draggable="false" class="runeIcon" :src="images.Sorcery.Sorcery" />
         <div v-if="i == 0" class="subIcons">
           <img draggable="false" :class="visible(i, 0, 0)" :src="images.Sorcery.SummonAery" />
@@ -125,7 +125,7 @@
           </div>
         </div>
       </div>
-      <div class="rune Resolve" v-if="Object.keys(data)[i] == 'Resolve'">
+      <div :class="'rune Resolve' + (i == 1 ? ' SecondRune ' + Object.keys(data)[0] + 'FirstRune': '')" v-if="Object.keys(data)[i] == 'Resolve'">
         <img draggable="false" class="runeIcon" :src="images.Resolve.Resolve" />
         <div v-if="i == 0" class="subIcons">
           <img draggable="false" :class="visible(i, 0, 0)" :src="images.Resolve.GraspOfTheUndying" />
@@ -166,7 +166,7 @@
         </div>
       </div>
       <div
-        class="rune Inspiration"
+        :class="'rune Inspiration' + (i == 1 ? ' SecondRune ' + Object.keys(data)[0] + 'FirstRune': '')"
         v-if="Object.keys(data)[i] == 'Inspiration'"
       >
         <img draggable="false" class="runeIcon" :src="images.Inspiration.Inspiration" />
@@ -321,22 +321,47 @@ export default {
 
 .Precision {
   --color: #ceae7b;
+  --gradcolor: rgba(255, 157, 0, 0.1);
+}
+
+.PrecisionFirstRune {
+  --firstgradcolor: rgba(255, 157, 0, 0.1);
 }
 
 .Domination {
   --color: #ce4142;
+  --gradcolor: rgba(255, 0, 2, 0.1);
+}
+
+.DominationFirstRune {
+  --firstgradcolor: rgba(255, 0, 2, 0.1);
 }
 
 .Sorcery {
   --color: #9ca6f7;
+  --gradcolor: rgba(0, 28, 255, 0.1);
+}
+
+.SorceryFirstRune {
+  --firstgradcolor: rgba(0, 28, 255, 0.1);
 }
 
 .Resolve {
   --color: #a4dd86;
+  --gradcolor: rgba(88, 255, 0, 0.1);
+}
+
+.ResolveFirstRune {
+  --firstgradcolor: rgba(88, 255, 0, 0.1);
 }
 
 .Inspiration {
   --color: #44acb5;
+  --gradcolor: rgba(0, 235, 255, 0.1);
+}
+
+.InspirationFirstRune {
+  --firstgradcolor: rgba(0, 235, 255, 0.1);
 }
 
 .runeList {
@@ -349,6 +374,11 @@ export default {
   flex-direction: column;
   width: 250px;
   padding: 15px;
+  background: linear-gradient(90deg, transparent, var(--gradcolor) 5%);
+}
+
+.rune.SecondRune {
+  background: linear-gradient(90deg, var(--firstgradcolor), var(--gradcolor) 5%);
 }
 
 .runeIcon {
