@@ -239,6 +239,13 @@ export default [
         "Precision": [4, 2, 2, 3],
         "Domination": [3, -1, 1, 1, 1, 2]
         }
+      },
+      {
+        name: "By 🅻🅰🅽🆉🆄🅶🅶",
+        runes: {
+          "Domination": [3, 3, 3, 3],
+          "Precision": [2, -1, 1, 1, 1, 2]
+        }
       }
     ]
   },
