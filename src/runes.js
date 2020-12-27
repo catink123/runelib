@@ -395,4 +395,33 @@ export default [
       },
     ],
   },
+  {
+    name: "Фиддлстикс",
+    data: [
+      {
+        name: "Default",
+        runes: {
+          Domination: [3, 1, 3, 4],
+          Inspiration: [3, -1, 1, 1, 1, 2]
+        },
+       spells: ["Flash", "Smite"],
+       lanes: ["Jungle"],
+      }
+    ],
+  },
+  {
+    name: "Самира",
+    data: [
+      {
+        name: "Default",
+        runes: {
+          Precision: [4, 3, 3, 1],
+          Domination: [2, -1, 1, 2, 1, 2]
+        },
+       spells: ["Flash", "Heal"],
+       lanes: ["Bottom"],
+      }
+    ],
+  },
+  
 ];

@@ -309,6 +309,30 @@ export default {
   }
 }
 
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
 .main {
   background: rgba(15, 15, 15, 0.85);
   display: flex;
@@ -502,6 +526,19 @@ export default {
   display: flex;
   flex-direction: column;
   padding: 5px;
+  opacity: 0;
+}
+
+.spells {
+  transform: translateY(-100%);
+  animation: .15s ease-in-out forwards slideInFromTop;
+  animation-delay: .15s;
+}
+
+.lanes {
+  transform: translateY(100%);
+  animation: .15s ease-in-out forwards slideInFromBottom;
+  animation-delay: .15s;
 }
 
 .spells img, .lanes img {

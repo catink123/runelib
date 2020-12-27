@@ -67,6 +67,7 @@ export default {
   margin: 0;
   border-radius: 50%;
   user-select: none;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .name {
@@ -80,7 +81,7 @@ export default {
 
 .runeContainer {
   display: flex;
-  position: absolute;
+  position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%)

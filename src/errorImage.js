@@ -1,0 +1,1 @@
+export default require.context("./assets", false, /\.jpg$/)('./Error.jpg');
