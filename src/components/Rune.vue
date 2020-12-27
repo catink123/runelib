@@ -1,6 +1,15 @@
 <template>
   <div class="main">
-    <p class="runeName">{{ name }}</p>
+    <div class="sideBar">
+      <div class="spells">
+        <img :src="spellImages[spells[0]]" />
+        <img :src="spellImages[spells[1]]" />
+      </div>
+      <p class="runeName">{{ name }}</p>
+      <div class="lanes">
+        <img v-for="lane in lanes" v-bind:key="lane" :src="laneImages[lane]" />
+      </div>
+    </div>
     <div class="runeIterator" v-for="i in dummyList" v-bind:key="i">
       <div :class="'rune Precision' + (i == 1 ? ' SecondRune ' + Object.keys(data)[0] + 'FirstRune': '')" v-if="Object.keys(data)[i] == 'Precision'">
         <img draggable="false" class="runeIcon" :src="images.Precision.Precision" />
@@ -213,13 +222,16 @@
 </template>
 
 <script>
-// import runeBinds from './runeBinds'
 import images from "./runeImages";
+import spellImages from './spellImages';
+import laneImages from './laneImages';
 
 export default {
   name: "Rune",
   props: {
     name: String,
+    spells: Array,
+    lanes: Array,
     data: Object
   },
   data() {
@@ -228,9 +240,9 @@ export default {
     };
   },
   computed: {
-    images() {
-      return images;
-    },
+    images() {return images},
+    spellImages() {return spellImages},
+    laneImages() {return laneImages},
     visibilityList() {
       var returnList = [];
       var converted = [];
@@ -307,7 +319,8 @@ export default {
 
 .runeName {
   position: relative;
-  padding: 10px 0;
+  /* padding: 10px 0; */
+  flex-grow: 1;
   text-align: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   width: 100%;
@@ -455,6 +468,10 @@ export default {
   margin-bottom: 15px !important;
 }
 
+.runeIterator {
+  margin-bottom: 0 !important;
+}
+
 .statModsIcons img {
   margin: auto;
   width: 24px;
@@ -476,8 +493,35 @@ export default {
   opacity: 1 !important;
 }
 
-.runeIterator {
-  margin-bottom: 0 !important;
+.sideBar {
+  display: flex;
+  flex-direction: column;
+}
+
+.spells, .lanes {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+
+.spells img, .lanes img {
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.05)
+}
+
+.lanes img {
+  border-color: rgba(255, 255, 255, 0.25)
+}
+
+.spells img:first-child, .lanes img:first-child {
+  margin-bottom: 5px;
+}
+
+.spells img:only-child, .lanes img:only-child {
+  margin-bottom: 0;
 }
 
 * {

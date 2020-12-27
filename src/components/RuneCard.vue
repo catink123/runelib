@@ -1,25 +1,39 @@
 <template>
-  <div :class="'RuneCard' + (showRune == true ? ' pressed' : '')" v-on:click="showRune = !showRune">
+  <div :class="'RuneCard' + (showRune == true ? ' pressed' : '')" v-on:click="showRune = !showRune" v-on:mousedown="playClickSound">
     <img class="image" :src="image" draggable="false" />
     <p class="name">{{ name }}</p>
     <div class="runeContainer" v-if="showRune">
-    <rune v-for="rune in data" v-bind:key="rune" class="minirune" :data="rune.runes" :name="rune.name" />
+    <rune v-for="entry in data" v-bind:key="entry" class="minirune" :data="entry.runes" :spells="entry.spells" :lanes="entry.lanes" :name="entry.name" />
     </div>
   </div>
 </template>
 
 <script>
 import Rune from './Rune.vue';
+import sounds from '../sounds';
+
 export default {
   props: {
     name: String,
-    image: Image,
+    image: String,
     data: Object
   },
   components: { Rune },
   data() {
     return {
       showRune: false
+    }
+  },
+  methods: {
+    playClickSound() {
+      var audio = new Audio(sounds.click);
+      audio.volume = 0.1;
+      audio.oncanplay = function () {
+        audio.play();
+      }
+    },
+    runeOnClick() {
+      this.$data.showRune = !this.$data.showRune; this.playClickSound();
     }
   }
 };
