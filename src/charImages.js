@@ -28,5 +28,6 @@ export default {
   Киндред: context("./Киндред.jpg"),
   Гарен: context("./Гарен.jpg"),
   Пантеон: context("./Пантеон.jpg"),
-  Фиддлстикс: context('./Фиддлстикс.jpg')
+  Фиддлстикс: context("./Фиддлстикс.jpg"),
+  Дариус: context("./Дариус.jpg"),
 };

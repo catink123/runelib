@@ -423,5 +423,18 @@ export default [
       }
     ],
   },
-  
+  {
+    name: "Дариус",
+    data: [
+      {
+        name: "Default",
+        runes: {
+          Precision: [4, 2, 2, 3],
+          Sorcery: [3, 2, -1, 2, 1, 2]
+        },
+       spells: ["Flash", "Ghost"],
+       lanes: ["Top"],
+      }
+    ],
+  },
 ];

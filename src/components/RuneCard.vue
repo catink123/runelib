@@ -1,5 +1,5 @@
 <template>
-  <div :class="'RuneCard' + (showRune == true ? ' pressed' : '')" @click="runeOnClick" v-on:mousedown="playClickSound">
+  <div :class="'RuneCard' + isPressed" @click="runeOnClick" v-on:mousedown="playClickSound">
     <img class="image" :src="image" draggable="false" />
     <p class="name">{{ name }}</p>
   </div>
@@ -22,6 +22,12 @@ export default {
   data() {
     return {
       showRune: false
+    }
+  },
+  computed: {
+    isPressed() {
+      if (this.runeIsVisible == true & this.currentOpened === this.name) return ' pressed'
+      else return ''
     }
   },
   methods: {
