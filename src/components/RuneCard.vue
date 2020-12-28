@@ -1,24 +1,24 @@
 <template>
-  <div :class="'RuneCard' + (showRune == true ? ' pressed' : '')" v-on:click="showRune = !showRune" v-on:mousedown="playClickSound">
+  <div :class="'RuneCard' + (showRune == true ? ' pressed' : '')" @click="runeOnClick" v-on:mousedown="playClickSound">
     <img class="image" :src="image" draggable="false" />
     <p class="name">{{ name }}</p>
-    <div class="runeContainer" v-if="showRune">
-    <rune v-for="entry in data" v-bind:key="entry" class="minirune" :data="entry.runes" :spells="entry.spells" :lanes="entry.lanes" :name="entry.name" />
-    </div>
   </div>
 </template>
 
 <script>
-import Rune from './Rune.vue';
 import sounds from '../sounds';
 
 export default {
   props: {
     name: String,
     image: String,
-    data: Object
+    data: Object,
+    toggleRuneVisibility: Function,
+    runeIsVisible: Boolean,
+    setData: Function,
+    currentOpened: String,
+    setCurrentOpened: Function
   },
-  components: { Rune },
   data() {
     return {
       showRune: false
@@ -33,7 +33,18 @@ export default {
       }
     },
     runeOnClick() {
-      this.$data.showRune = !this.$data.showRune; this.playClickSound();
+      if (this.$props.runeIsVisible == true) {
+        if (this.$props.currentOpened === this.$props.name) {
+          this.$props.toggleRuneVisibility();
+        } else {
+          this.setData(this.$props.data);
+          this.$props.setCurrentOpened(this.$props.name);
+        }
+      } else {
+        this.setData(this.$props.data);
+        this.$props.toggleRuneVisibility();
+        this.$props.setCurrentOpened(this.$props.name);
+      }
     }
   }
 };
@@ -77,33 +88,5 @@ export default {
   user-select: none;
   font-size: 20px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.runeContainer {
-  display: flex;
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%)
-}
-
-.minirune {
-  pointer-events: none;
-  border-radius: 5px;
-  border: 1px solid rgb(150, 150, 150);
-  animation: 0.2s ease-in-out forwards pulldown;
-  overflow: hidden;
-}
-
-@keyframes pulldown {
-  0% {
-    height: 0px;
-    opacity: 0;
-  }
-
-  100% {
-    height: 415px;
-    opacity: 1;
-  }
 }
 </style>

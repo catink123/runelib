@@ -301,7 +301,7 @@ export default {
 <style scoped>
 @keyframes nameShow {
   0% {
-    transform: translateX(-200%);
+    transform: translateX(-100%);
   }
 
   100% {
@@ -338,7 +338,9 @@ export default {
   display: flex;
   flex-direction: row;
   height: 415px;
-  backdrop-filter: blur(10px)
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  color: white;
 }
 
 .runeName {
@@ -350,9 +352,9 @@ export default {
   width: 100%;
   z-index: 1;
   writing-mode: vertical-lr;
-  transform: translateX(-200%);
+  transform: translateX(-100%);
   animation: .25s ease-in-out forwards nameShow;
-  animation-delay: 0.15s;
+  animation-delay: 0.25s;
   margin: 10px;
 }
 
