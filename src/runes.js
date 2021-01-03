@@ -465,4 +465,19 @@ export default [
       }
     ],
   },
+  {
+    name: "Зак",
+    data: [
+      {
+        name: "Default",
+        runes: {
+          Resolve: [2, 2, 1, 2],
+          Inspiration: [2, -1, 1, 3, 2, 1]
+        },
+       spells: ["Flash", "Smite"],
+       lanes: ["Jungle"],
+      }
+    ],
+  },
+  
 ];

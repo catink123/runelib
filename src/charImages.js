@@ -33,4 +33,5 @@ export default {
   Самира: context('./Самира.jpg'),
   Катарина: context('./Катарина.jpg'),
   Вейн: context('./Вейн.jpg'),
+  Зак: context('./Зак.jpg'),
 };
