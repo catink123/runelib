@@ -429,11 +429,39 @@ export default [
       {
         name: "Default",
         runes: {
-          Precision: [4, 2, 2, 3],
+          Precision: [4, 2, 1, 3],
           Sorcery: [3, 2, -1, 2, 1, 2]
         },
        spells: ["Flash", "Ghost"],
        lanes: ["Top"],
+      }
+    ],
+  },
+  {
+    name: "Катарина",
+    data: [
+      {
+        name: "Default",
+        runes: {
+          Precision: [4, 2, 2, 1],
+          Domination: [3, -1, 1, 1, 1, 3]
+        },
+       spells: ["Flash", "Ignite"],
+       lanes: ["Middle"],
+      }
+    ],
+  },
+  {
+    name: "Вейн",
+    data: [
+      {
+        name: "Default",
+        runes: {
+          Precision: [1, 2, 1, 1],
+          Domination: [2, -1, 1, 2, 1, 2]
+        },
+       spells: ["Flash", "Heal"],
+       lanes: ["Bottom"],
       }
     ],
   },

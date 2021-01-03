@@ -7,213 +7,29 @@
       </div>
       <p class="runeName">{{ name }}</p>
       <div class="lanes">
-        <img v-for="lane in lanes" v-bind:key="lane" :src="laneImages[lane]" />
+        <img v-for="lane in lanes" :key="lane" :src="laneImages[lane]" />
       </div>
     </div>
-    <div class="runeIterator" v-for="i in dummyList" v-bind:key="i">
-      <div :class="'rune Precision' + (i == 1 ? ' SecondRune ' + Object.keys(data)[0] + 'FirstRune': '')" v-if="Object.keys(data)[i] == 'Precision'">
-        <img draggable="false" class="runeIcon" :src="images.Precision.Precision" />
+    <div class="runeIterator" v-for="i in dummyList" :key="i">
+      <div :class="'rune ' + Object.keys(data)[i] + (i == 1 ? ' SecondRune ' + Object.keys(data)[0] + 'FirstRune': '')">
+        <img draggable="false" class="runeIcon" :src="images[Object.keys(data)[i]][Object.keys(data)[i]]" />
         <div v-if="i == 0" class="subIcons">
-          <img draggable="false" :class="visible(i, 0, 0)" :src="images.Precision.PressTheAttack" />
-          <img draggable="false" :class="visible(i, 0, 1)" :src="images.Precision.LethalTempo" />
-          <img draggable="false" :class="visible(i, 0, 2)" :src="images.Precision.FleetFootwork" />
-          <img draggable="false" :class="visible(i, 0, 3)" :src="images.Precision.Conqueror" />
+          <img v-for="icon in runeTypes[Object.keys(data)[i]][0]" :key="icon" draggable="false" :class="visible(i, 0, findIndex(icon, runeTypes[Object.keys(data)[i]][0]))" :src="icon" />
         </div>
         <div class="subIcons">
-          <img draggable="false" :class="visible(i, 1, 0)" :src="images.Precision.Overheal" />
-          <img draggable="false" :class="visible(i, 1, 1)" :src="images.Precision.Triumph" />
-          <img draggable="false" :class="visible(i, 1, 2)" :src="images.Precision.PresenceOfMind" />
+          <img v-for="icon in runeTypes[Object.keys(data)[i]][1]" :key="icon" draggable="false" :class="visible(i, 1, findIndex(icon, runeTypes[Object.keys(data)[i]][1]))" :src="icon" />
         </div>
         <div class="subIcons">
-          <img draggable="false" :class="visible(i, 2, 0)" :src="images.Precision.LegendAlacrity" />
-          <img draggable="false" :class="visible(i, 2, 1)" :src="images.Precision.LegendTenacity" />
-          <img draggable="false" :class="visible(i, 2, 2)" :src="images.Precision.LegendBloodline" />
+          <img v-for="icon in runeTypes[Object.keys(data)[i]][2]" :key="icon" draggable="false" :class="visible(i, 2, findIndex(icon, runeTypes[Object.keys(data)[i]][2]))" :src="icon" />
         </div>
         <div class="subIcons">
-          <img draggable="false" :class="visible(i, 3, 0)" :src="images.Precision.CoupDeGrace" />
-          <img draggable="false" :class="visible(i, 3, 1)" :src="images.Precision.CutDown" />
-          <img draggable="false" :class="visible(i, 3, 2)" :src="images.Precision.LastStand" />
+          <img v-for="icon in runeTypes[Object.keys(data)[i]][3]" :key="icon" draggable="false" :class="visible(i, 3, findIndex(icon, runeTypes[Object.keys(data)[i]][3]))" :src="icon" />
         </div>
         <div v-if="i == 1" class="statModsIcons">
-          <div>
-            <img draggable="false" :class="visible(i, 4, 0)" :src="images.StatMods.AdaptiveForceIcon" />
-            <img draggable="false" :class="visible(i, 4, 1)" :src="images.StatMods.AttackSpeedIcon" />
-            <img draggable="false" :class="visible(i, 4, 2)" :src="images.StatMods.CDRScalingIcon" />
-          </div>
-          <div>
-            <img draggable="false" :class="visible(i, 5, 0)" :src="images.StatMods.AdaptiveForceIcon" />
-            <img draggable="false" :class="visible(i, 5, 1)" :src="images.StatMods.ArmorIcon" />
-            <img draggable="false" :class="visible(i, 5, 2)" :src="images.StatMods.MagicResIcon" />
-          </div>
-          <div>
-            <img draggable="false" :class="visible(i, 6, 0)" :src="images.StatMods.HealthScalingIcon" />
-            <img draggable="false" :class="visible(i, 6, 1)" :src="images.StatMods.ArmorIcon" />
-            <img draggable="false" :class="visible(i, 6, 2)" :src="images.StatMods.MagicResIcon" />
-          </div>
-        </div>
-      </div>
-      <div :class="'rune Domination' + (i == 1 ? ' SecondRune ' + Object.keys(data)[0] + 'FirstRune': '')" v-if="Object.keys(data)[i] == 'Domination'">
-        <img draggable="false" class="runeIcon" :src="images.Domination.Domination" />
-        <div v-if="i == 0" class="subIcons">
-          <img draggable="false" :class="visible(i, 0, 0)" :src="images.Domination.Electrocute" />
-          <img draggable="false" :class="visible(i, 0, 1)" :src="images.Domination.Predator" />
-          <img draggable="false" :class="visible(i, 0, 2)" :src="images.Domination.DarkHarvest" />
-          <img draggable="false" :class="visible(i, 0, 3)" :src="images.Domination.HailOfBlades" />
-        </div>
-        <div class="subIcons">
-          <img draggable="false" :class="visible(i, 1, 0)" :src="images.Domination.CheapShot" />
-          <img draggable="false" :class="visible(i, 1, 1)" :src="images.Domination.TasteOfBlood" />
-          <img draggable="false" :class="visible(i, 1, 2)" :src="images.Domination.SuddenImpact" />
-        </div>
-        <div class="subIcons">
-          <img draggable="false" :class="visible(i, 2, 0)" :src="images.Domination.ZombieWard" />
-          <img draggable="false" :class="visible(i, 2, 1)" :src="images.Domination.GhostPoro" />
-          <img draggable="false" :class="visible(i, 2, 2)" :src="images.Domination.EyeballCollection" />
-        </div>
-        <div class="subIcons">
-          <img draggable="false" :class="visible(i, 3, 0)" :src="images.Domination.RavenousHunter" />
-          <img draggable="false" :class="visible(i, 3, 1)" :src="images.Domination.IngeniousHunter" />
-          <img draggable="false" :class="visible(i, 3, 2)" :src="images.Domination.RelentlessHunter" />
-          <img draggable="false" :class="visible(i, 3, 3)" :src="images.Domination.UltimateHunter" />
-        </div>
-        <div v-if="i == 1" class="statModsIcons">
-          <div>
-            <img draggable="false" :class="visible(i, 4, 0)" :src="images.StatMods.AdaptiveForceIcon" />
-            <img draggable="false" :class="visible(i, 4, 1)" :src="images.StatMods.AttackSpeedIcon" />
-            <img draggable="false" :class="visible(i, 4, 2)" :src="images.StatMods.CDRScalingIcon" />
-          </div>
-          <div>
-            <img draggable="false" :class="visible(i, 5, 0)" :src="images.StatMods.AdaptiveForceIcon" />
-            <img draggable="false" :class="visible(i, 5, 1)" :src="images.StatMods.ArmorIcon" />
-            <img draggable="false" :class="visible(i, 5, 2)" :src="images.StatMods.MagicResIcon" />
-          </div>
-          <div>
-            <img draggable="false" :class="visible(i, 6, 0)" :src="images.StatMods.HealthScalingIcon" />
-            <img draggable="false" :class="visible(i, 6, 1)" :src="images.StatMods.ArmorIcon" />
-            <img draggable="false" :class="visible(i, 6, 2)" :src="images.StatMods.MagicResIcon" />
-          </div>
-        </div>
-      </div>
-      <div :class="'rune Sorcery' + (i == 1 ? ' SecondRune ' + Object.keys(data)[0] + 'FirstRune': '')" v-if="Object.keys(data)[i] == 'Sorcery'">
-        <img draggable="false" class="runeIcon" :src="images.Sorcery.Sorcery" />
-        <div v-if="i == 0" class="subIcons">
-          <img draggable="false" :class="visible(i, 0, 0)" :src="images.Sorcery.SummonAery" />
-          <img draggable="false" :class="visible(i, 0, 1)" :src="images.Sorcery.ArcaneComet" />
-          <img draggable="false" :class="visible(i, 0, 2)" :src="images.Sorcery.PhaseRush" />
-        </div>
-        <div class="subIcons">
-          <img draggable="false" :class="visible(i, 1, 0)" :src="images.Sorcery.NullifyingOrb" />
-          <img draggable="false" :class="visible(i, 1, 1)" :src="images.Sorcery.ManaflowBand" />
-          <img draggable="false" :class="visible(i, 1, 2)" :src="images.Sorcery.NimbusCloak" />
-        </div>
-        <div class="subIcons">
-          <img draggable="false" :class="visible(i, 2, 0)" :src="images.Sorcery.Transcendence" />
-          <img draggable="false" :class="visible(i, 2, 1)" :src="images.Sorcery.Celerity" />
-          <img draggable="false" :class="visible(i, 2, 2)" :src="images.Sorcery.AbsoluteFocus" />
-        </div>
-        <div class="subIcons">
-          <img draggable="false" :class="visible(i, 3, 0)" :src="images.Sorcery.Scorch" />
-          <img draggable="false" :class="visible(i, 3, 1)" :src="images.Sorcery.Waterwalking" />
-          <img draggable="false" :class="visible(i, 3, 2)" :src="images.Sorcery.GatheringStorm" />
-        </div>
-        <div v-if="i == 1" class="statModsIcons">
-          <div>
-            <img draggable="false" :class="visible(i, 4, 0)" :src="images.StatMods.AdaptiveForceIcon" />
-            <img draggable="false" :class="visible(i, 4, 1)" :src="images.StatMods.AttackSpeedIcon" />
-            <img draggable="false" :class="visible(i, 4, 2)" :src="images.StatMods.CDRScalingIcon" />
-          </div>
-          <div>
-            <img draggable="false" :class="visible(i, 5, 0)" :src="images.StatMods.AdaptiveForceIcon" />
-            <img draggable="false" :class="visible(i, 5, 1)" :src="images.StatMods.ArmorIcon" />
-            <img draggable="false" :class="visible(i, 5, 2)" :src="images.StatMods.MagicResIcon" />
-          </div>
-          <div>
-            <img draggable="false" :class="visible(i, 6, 0)" :src="images.StatMods.HealthScalingIcon" />
-            <img draggable="false" :class="visible(i, 6, 1)" :src="images.StatMods.ArmorIcon" />
-            <img draggable="false" :class="visible(i, 6, 2)" :src="images.StatMods.MagicResIcon" />
-          </div>
-        </div>
-      </div>
-      <div :class="'rune Resolve' + (i == 1 ? ' SecondRune ' + Object.keys(data)[0] + 'FirstRune': '')" v-if="Object.keys(data)[i] == 'Resolve'">
-        <img draggable="false" class="runeIcon" :src="images.Resolve.Resolve" />
-        <div v-if="i == 0" class="subIcons">
-          <img draggable="false" :class="visible(i, 0, 0)" :src="images.Resolve.GraspOfTheUndying" />
-          <img draggable="false" :class="visible(i, 0, 1)" :src="images.Resolve.Aftershock" />
-          <img draggable="false" :class="visible(i, 0, 2)" :src="images.Resolve.Guardian" />
-        </div>
-        <div class="subIcons">
-          <img draggable="false" :class="visible(i, 1, 0)" :src="images.Resolve.Demolish" />
-          <img draggable="false" :class="visible(i, 1, 1)" :src="images.Resolve.FontOfLife" />
-          <img draggable="false" :class="visible(i, 1, 2)" :src="images.Resolve.ShieldBash" />
-        </div>
-        <div class="subIcons">
-          <img draggable="false" :class="visible(i, 2, 0)" :src="images.Resolve.Conditioning" />
-          <img draggable="false" :class="visible(i, 2, 1)" :src="images.Resolve.SecondWind" />
-          <img draggable="false" :class="visible(i, 2, 2)" :src="images.Resolve.BonePlating" />
-        </div>
-        <div class="subIcons">
-          <img draggable="false" :class="visible(i, 3, 0)" :src="images.Resolve.Overgrowth" />
-          <img draggable="false" :class="visible(i, 3, 1)" :src="images.Resolve.Revitalize" />
-          <img draggable="false" :class="visible(i, 3, 2)" :src="images.Resolve.Unflinching" />
-        </div>
-        <div v-if="i == 1" class="statModsIcons">
-          <div>
-            <img draggable="false" :class="visible(i, 4, 0)" :src="images.StatMods.AdaptiveForceIcon" />
-            <img draggable="false" :class="visible(i, 4, 1)" :src="images.StatMods.AttackSpeedIcon" />
-            <img draggable="false" :class="visible(i, 4, 2)" :src="images.StatMods.CDRScalingIcon" />
-          </div>
-          <div>
-            <img draggable="false" :class="visible(i, 5, 0)" :src="images.StatMods.AdaptiveForceIcon" />
-            <img draggable="false" :class="visible(i, 5, 1)" :src="images.StatMods.ArmorIcon" />
-            <img draggable="false" :class="visible(i, 5, 2)" :src="images.StatMods.MagicResIcon" />
-          </div>
-          <div>
-            <img draggable="false" :class="visible(i, 6, 0)" :src="images.StatMods.HealthScalingIcon" />
-            <img draggable="false" :class="visible(i, 6, 1)" :src="images.StatMods.ArmorIcon" />
-            <img draggable="false" :class="visible(i, 6, 2)" :src="images.StatMods.MagicResIcon" />
-          </div>
-        </div>
-      </div>
-      <div
-        :class="'rune Inspiration' + (i == 1 ? ' SecondRune ' + Object.keys(data)[0] + 'FirstRune': '')"
-        v-if="Object.keys(data)[i] == 'Inspiration'"
-      >
-        <img draggable="false" class="runeIcon" :src="images.Inspiration.Inspiration" />
-        <div v-if="i == 0" class="subIcons">
-          <img draggable="false" :class="visible(i, 0, 0)" :src="images.Inspiration.GlacialAugment" />
-          <img draggable="false" :class="visible(i, 0, 1)" :src="images.Inspiration.UnsealedSpellbook" />
-          <img draggable="false" :class="visible(i, 0, 2)" :src="images.Inspiration.PrototypeOmnistone" />
-        </div>
-        <div class="subIcons">
-          <img draggable="false" :class="visible(i, 1, 0)" :src="images.Inspiration.HextechFlashtraption" />
-          <img draggable="false" :class="visible(i, 1, 1)" :src="images.Inspiration.MagicalFootwear" />
-          <img draggable="false" :class="visible(i, 1, 2)" :src="images.Inspiration.PerfectTiming" />
-        </div>
-        <div class="subIcons">
-          <img draggable="false" :class="visible(i, 2, 0)" :src="images.Inspiration.FuturesMarket" />
-          <img draggable="false" :class="visible(i, 2, 1)" :src="images.Inspiration.MinionDematerializer" />
-          <img draggable="false" :class="visible(i, 2, 2)" :src="images.Inspiration.BiscuitDelivery" />
-        </div>
-        <div class="subIcons">
-          <img draggable="false" :class="visible(i, 3, 0)" :src="images.Inspiration.CosmicInsight" />
-          <img draggable="false" :class="visible(i, 3, 1)" :src="images.Inspiration.ApproachVelocity" />
-          <img draggable="false" :class="visible(i, 3, 2)" :src="images.Inspiration.TimeWarpTonic" />
-        </div>
-        <div v-if="i == 1" class="statModsIcons">
-          <div>
-            <img draggable="false" :class="visible(i, 4, 0)" :src="images.StatMods.AdaptiveForceIcon" />
-            <img draggable="false" :class="visible(i, 4, 1)" :src="images.StatMods.AttackSpeedIcon" />
-            <img draggable="false" :class="visible(i, 4, 2)" :src="images.StatMods.CDRScalingIcon" />
-          </div>
-          <div>
-            <img draggable="false" :class="visible(i, 5, 0)" :src="images.StatMods.AdaptiveForceIcon" />
-            <img draggable="false" :class="visible(i, 5, 1)" :src="images.StatMods.ArmorIcon" />
-            <img draggable="false" :class="visible(i, 5, 2)" :src="images.StatMods.MagicResIcon" />
-          </div>
-          <div>
-            <img draggable="false" :class="visible(i, 6, 0)" :src="images.StatMods.HealthScalingIcon" />
-            <img draggable="false" :class="visible(i, 6, 1)" :src="images.StatMods.ArmorIcon" />
-            <img draggable="false" :class="visible(i, 6, 2)" :src="images.StatMods.MagicResIcon" />
+          <div v-for="smiGroup in runeTypes.StatMods" :key="smiGroup">
+            <img draggable="false" :class="visible(i, findIndex(smiGroup, runeTypes.StatMods) + 4, 0)" :src="smiGroup[0]" />
+            <img draggable="false" :class="visible(i, findIndex(smiGroup, runeTypes.StatMods) + 4, 1)" :src="smiGroup[1]" />
+            <img draggable="false" :class="visible(i, findIndex(smiGroup, runeTypes.StatMods) + 4, 2)" :src="smiGroup[2]" />
           </div>
         </div>
       </div>
@@ -225,6 +41,7 @@
 import images from "./runeImages";
 import spellImages from './spellImages';
 import laneImages from './laneImages';
+import runeTypes from './runeTypes';
 
 export default {
   name: "Rune",
@@ -243,6 +60,7 @@ export default {
     images() {return images},
     spellImages() {return spellImages},
     laneImages() {return laneImages},
+    runeTypes() {return runeTypes},
     visibilityList() {
       var returnList = [];
       var converted = [];
@@ -293,6 +111,11 @@ export default {
           return null
         }
       }
+    },
+    findIndex(elem, arr) {
+      return arr.findIndex((val) => {
+        if (val === elem) return 1;
+      })
     }
   }
 };
@@ -337,10 +160,11 @@ export default {
   background: rgba(15, 15, 15, 0.85);
   display: flex;
   flex-direction: row;
-  height: 415px;
+  height: 416px;
   backdrop-filter: blur(10px);
   overflow: hidden;
   color: white;
+  box-shadow: 0 0 5px black;
 }
 
 .runeName {
@@ -412,6 +236,8 @@ export default {
   display: flex;
   flex-direction: column;
   width: 250px;
+  /* max-height: 416px; */
+  /* box-sizing: border-box; */
   padding: 15px;
   background: linear-gradient(90deg, transparent, var(--gradcolor) 5%);
 }
@@ -552,14 +378,18 @@ export default {
 }
 
 .lanes img {
-  border-color: rgba(255, 255, 255, 0.25)
+  width: 28px;
+  height: 28px;
+  padding: 2px;
+  border-color: rgba(255, 255, 255, 0.25);
+  filter: grayscale() brightness(1.5) contrast(2)
 }
 
-.spells img:first-child, .lanes img:first-child {
+.spells img:first-child, .lanes img {
   margin-bottom: 5px;
 }
 
-.spells img:only-child, .lanes img:only-child {
+.spells img:only-child, .lanes img:last-child {
   margin-bottom: 0;
 }
 

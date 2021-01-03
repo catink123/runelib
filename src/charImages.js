@@ -30,4 +30,7 @@ export default {
   Пантеон: context("./Пантеон.jpg"),
   Фиддлстикс: context("./Фиддлстикс.jpg"),
   Дариус: context("./Дариус.jpg"),
+  Самира: context('./Самира.jpg'),
+  Катарина: context('./Катарина.jpg'),
+  Вейн: context('./Вейн.jpg'),
 };
